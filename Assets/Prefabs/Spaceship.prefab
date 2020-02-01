@@ -483,7 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7486362845135478422}
-  - component: {fileID: 7486362845135478416}
+  - component: {fileID: 201157926}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -513,8 +513,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7486362845135478416
-BoxCollider2D:
+--- !u!60 &201157926
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -526,7 +526,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.31705242, y: -0.3853407}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -536,9 +536,18 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.9267682, y: 3.5656843}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.3288318, y: 1.4195437}
+      - {x: -0.6902592, y: 1.2047989}
+      - {x: -0.99001664, y: 0.49020928}
+      - {x: -1.3225565, y: -1.4821227}
+      - {x: -1.2376903, y: -2.0293336}
+      - {x: -0.3008021, y: -2.2074924}
+      - {x: 0.59498584, y: -2.0646434}
+      - {x: 0.7169028, y: -1.4243734}
+      - {x: 0.3950224, y: 0.4042576}
+      - {x: 0.06661326, y: 1.1934605}
 --- !u!1 &7486362845581663937
 GameObject:
   m_ObjectHideFlags: 0

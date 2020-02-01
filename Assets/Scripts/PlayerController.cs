@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public Transform health;
+
+    public float healthValue;
+
     public GameObject bulletPrefab;
 
     public Animator animator;
@@ -28,7 +33,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -96,8 +101,54 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            bullet.GetComponent<Rigidbody2D>().velocity = moveVector;
+            var rotation = 0;
+            var bulletMovement = new Vector2(0, 0);
+            if(lastFacingDirectionFloat == 1)
+            {
+                rotation = 90;
+                bulletMovement = new Vector2(0, 1);
+            }
+            else if (lastFacingDirectionFloat == 2)
+            {
+                rotation = 45;
+                bulletMovement = new Vector2(1, 1);
+            }
+            else if (lastFacingDirectionFloat == 3)
+            {
+                rotation = 0;
+                bulletMovement = new Vector2(1, 0);
+            }
+            else if (lastFacingDirectionFloat == 4)
+            {
+                rotation = 315;
+                bulletMovement = new Vector2(1, -1);
+            }
+            else if (lastFacingDirectionFloat == 5)
+            {
+                rotation = 270;
+                bulletMovement = new Vector2(0, -1);
+            }
+            else if (lastFacingDirectionFloat == 6)
+            {
+                rotation = 225;
+                bulletMovement = new Vector2(-1, -1);
+            }
+            else if (lastFacingDirectionFloat == 7)
+            {
+                rotation = 180;
+                bulletMovement = new Vector2(-1, 0);
+            }
+            else if (lastFacingDirectionFloat == 8)
+            {
+                rotation = 135;
+                bulletMovement = new Vector2(-1, 1);
+            }
+            bulletMovement = bulletMovement.normalized;
+            var bulletTransform = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+            GameObject bullet = Instantiate(bulletPrefab, bulletTransform, Quaternion.Euler(0,0,rotation));
+            bullet.GetComponent<Rigidbody2D>().velocity = bulletMovement * 15f;
+            bullet.gameObject.tag = "Bullet";
+            Destroy(bullet, 2.0f);
         }
     }
 
@@ -106,13 +157,23 @@ public class PlayerController : MonoBehaviour
         rb.velocity = moveVector * moveSpeed * Time.fixedDeltaTime;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        print("trigger entered and is" + collision);
 
         if (collision.gameObject.tag == "Enemy")
         {
-            print("triggered enemy");
+            print("collide");
+            var damage = 2f;
+            healthValue = healthValue - damage;
+            var healthBarValue = healthValue / 100f;
+
+            if(healthBarValue < 0f)
+            {
+                healthBarValue = 0f;
+            }
+
+            GameObject bar = GameObject.FindGameObjectWithTag("PlayerHealth");
+            bar.transform.localScale = new Vector3(healthBarValue, 1f);
         }
     }
 }

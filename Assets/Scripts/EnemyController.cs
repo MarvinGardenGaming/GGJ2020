@@ -7,6 +7,8 @@ public class EnemyController : MonoBehaviour
 {
     public Rigidbody2D rb;
 
+    public float EnemyHealth;
+
     private Transform target;
 
     public float moveSpeed;
@@ -19,5 +21,17 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            EnemyHealth = EnemyHealth - 10f;
+            if(EnemyHealth <= 0f)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
