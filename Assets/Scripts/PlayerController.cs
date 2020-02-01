@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    public ManagerScript gameManager;
+
     public Animator animator;
 
     public Rigidbody2D rb;
@@ -144,7 +146,7 @@ public class PlayerController : MonoBehaviour
                 bulletMovement = new Vector2(-1, 1);
             }
             bulletMovement = bulletMovement.normalized;
-            var bulletTransform = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
+            var bulletTransform = new Vector3(transform.position.x, transform.position.y, -1);
             GameObject bullet = Instantiate(bulletPrefab, bulletTransform, Quaternion.Euler(0,0,rotation));
             bullet.GetComponent<Rigidbody2D>().velocity = bulletMovement * 15f;
             bullet.gameObject.tag = "Bullet";
@@ -170,6 +172,7 @@ public class PlayerController : MonoBehaviour
             if(healthBarValue < 0f)
             {
                 healthBarValue = 0f;
+                gameManager.EndGame();
             }
 
             GameObject bar = GameObject.FindGameObjectWithTag("PlayerHealth");

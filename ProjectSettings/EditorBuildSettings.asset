@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Sandbox.unity
+    guid: 48799c1182a0e49269a9b48057cdf41c
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 2c95751989e2e4c7c9559b4c845c0c45
   m_configObjects: {}
