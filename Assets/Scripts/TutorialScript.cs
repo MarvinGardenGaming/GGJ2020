@@ -11,8 +11,8 @@ public class TutorialScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        intro.AddForce(new Vector2(0, 2300));
-        Invoke("TransitionScene", 30f);
+        intro.AddForce(new Vector2(0, 3000));
+        Invoke("TransitionScene", 16f);
     }
 
     // Update is called once per frame

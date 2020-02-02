@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
     public Animator animator;
 
     private float startingHealth;
+
+    private float timePlayed;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,12 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        timePlayed = timePlayed += 0.02f;
+        moveSpeed += 0.001f;
+        if(moveSpeed > 6.5f)
+        {
+            moveSpeed = 6.5f;
+        }
         transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.fixedDeltaTime);
     }
 
@@ -47,4 +55,5 @@ public class EnemyController : MonoBehaviour
         animator.SetFloat("Enemy1Horizontal", rb.velocity.x);
         animator.SetFloat("Enemy1Vertical", rb.velocity.y);
     }
+
 }

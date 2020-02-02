@@ -62,7 +62,6 @@ public class RocketScript : MonoBehaviour
 
     public void Return()
     {
-        print("RETURNED");
         rb.MovePosition(new Vector2(0, 20));
         rb.velocity = new Vector3(0, -20, 0);
 

@@ -22,13 +22,13 @@ public class ManagerScript : MonoBehaviour
     {
         var a = 1;
 
-        while(a <= initialNPCs)
+        while (a <= initialNPCs)
         {
             a += 1;
             SpawnNPCs();
         }
         var i = 1;
-        while(i <= initialEnemies)
+        while (i <= initialEnemies)
         {
             i += 1;
             SpawnEnemies();
@@ -36,6 +36,7 @@ public class ManagerScript : MonoBehaviour
 
         InvokeRepeating("SpawnEnemies", 2f, 6f);
     }
+
     public void EndGame()
     {
         SceneManager.LoadScene(sceneName: "GameOver");

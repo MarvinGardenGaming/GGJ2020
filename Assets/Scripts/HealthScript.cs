@@ -18,6 +18,5 @@ public class HealthScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("FOUND COLLISION");
     }
 }

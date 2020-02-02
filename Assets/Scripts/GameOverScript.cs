@@ -22,8 +22,6 @@ public class GameOverScript : MonoBehaviour
 
             var score = rocketShip.transform.GetComponent<RocketScript>().scoreInt;
 
-            print("Score is: " + score);
-
             scoreText.text = score.ToString();
 
             Destroy(rocketShip);
