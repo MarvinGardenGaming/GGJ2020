@@ -12,10 +12,13 @@ public class EnemyController : MonoBehaviour
     private Transform target;
 
     public float moveSpeed;
+
+    private float startingHealth;
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        startingHealth = EnemyHealth;
     }
 
     private void FixedUpdate()
@@ -28,6 +31,8 @@ public class EnemyController : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             EnemyHealth = EnemyHealth - 10f;
+            var colorValue = EnemyHealth / startingHealth;
+            gameObject.GetComponent<SpriteRenderer>().color = Color.Lerp(Color.red, Color.blue, colorValue);
             if(EnemyHealth <= 0f)
             {
                 Destroy(gameObject);
