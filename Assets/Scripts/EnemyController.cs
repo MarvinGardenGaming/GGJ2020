@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
 
     public float moveSpeed;
 
+    public Animator animator;
+
     private float startingHealth;
     // Start is called before the first frame update
     void Start()
@@ -38,5 +40,11 @@ public class EnemyController : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void Update()
+    {
+        animator.SetFloat("Enemy1Horizontal", rb.velocity.x);
+        animator.SetFloat("Enemy1Vertical", rb.velocity.y);
     }
 }

@@ -805,8 +805,8 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 0.8530281, b: 0.5990566, a: 1}
   m_Intensity: 65
-  m_Range: 10
-  m_SpotAngle: 75
+  m_Range: 11
+  m_SpotAngle: 179
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -819,7 +819,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -970,7 +970,6 @@ GameObject:
   - component: {fileID: 6385460039114532776}
   - component: {fileID: 6385460039114532780}
   - component: {fileID: 2001239502}
-  - component: {fileID: 1506060166}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1064,10 +1063,11 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   animator: {fileID: 2001239502}
   rb: {fileID: 6385460039114532776}
-  moveSpeed: 200
+  moveSpeed: 300
   carryingNPC: 0
   savedNPC: 0
   shouldLaunch: 0
+  repairBarValue: 0
 --- !u!50 &6385460039114532776
 Rigidbody2D:
   serializedVersion: 4
@@ -1151,17 +1151,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1506060166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6385460039114532777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10322833efd7943b8abacd3989fb9d3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  launchRocket: 0
-  rb: {fileID: 0}

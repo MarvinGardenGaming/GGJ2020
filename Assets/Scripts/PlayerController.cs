@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveVector;
 
     private float lastFacingDirectionFloat;
+
+    public float repairBarValue;
+
     // Up = 1
     // UpRight = 2
     // Right = 3
@@ -57,6 +60,7 @@ public class PlayerController : MonoBehaviour
         HandleInput();
         HandleFire();
         LowerRepairBarOverTime();
+        repairBarValue = repairValue / 100f;
     }
 
     private void FixedUpdate()
@@ -176,7 +180,8 @@ public class PlayerController : MonoBehaviour
             repairValue = repairValue - dwindleSpeed;
 
         }
-        var repairBarValue = repairValue / 100f;
+        repairBarValue = repairValue / 100f;
+
 
         GameObject repairBar = GameObject.FindGameObjectWithTag("RepairBar");
         repairBar.transform.localScale = new Vector3(repairBarValue, 1f);
@@ -194,12 +199,12 @@ public class PlayerController : MonoBehaviour
             print("Touching rocket");
             var repairSpeed = 0.7f;
             repairValue = repairValue + repairSpeed;
-            var repairBarValue = repairValue / 100f;
+            repairBarValue = repairValue / 100f;
 
             if (repairBarValue >= 1f)
             {
-                repairValue = 0f;
-                repairBarValue = 0f;
+                repairValue = 100f;
+                repairBarValue = 1f;
                 print("TAKE OFF");
 
                 shouldLaunch = true;
@@ -221,7 +226,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
-            var damage = 2f;
+            var damage = 1f;
             healthValue = healthValue - damage;
             var healthBarValue = healthValue / 100f;
 

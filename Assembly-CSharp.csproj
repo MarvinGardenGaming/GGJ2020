@@ -66,12 +66,15 @@
     <Compile Include="Assets\Scripts\bulletScript.cs" />
     <Compile Include="Assets\Scripts\ChangeScore.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\GameOverScript.cs" />
     <Compile Include="Assets\Scripts\HealthScript.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\ManagerScript.cs" />
     <Compile Include="Assets\Scripts\NPCscript.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\RestartScript.cs" />
     <Compile Include="Assets\Scripts\RocketScript.cs" />
+    <Compile Include="Assets\Scripts\TutorialScript.cs" />
     <Reference Include="Unity.2D.PixelPerfect.Editor">
       <HintPath>/Users/zacharymarvin/Documents/Galactic Repair and Rescue/GGJ2020/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>

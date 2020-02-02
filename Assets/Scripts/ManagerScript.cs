@@ -34,7 +34,7 @@ public class ManagerScript : MonoBehaviour
             SpawnEnemies();
         }
 
-        InvokeRepeating("SpawnEnemies", 2f, 3f);
+        InvokeRepeating("SpawnEnemies", 2f, 6f);
     }
     public void EndGame()
     {
