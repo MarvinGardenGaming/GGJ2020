@@ -34,7 +34,7 @@ public class ManagerScript : MonoBehaviour
             SpawnEnemies();
         }
 
-        InvokeRepeating("SpawnEnemies", 2f, 2f);
+        InvokeRepeating("SpawnEnemies", 2f, 3f);
     }
     public void EndGame()
     {
@@ -43,9 +43,6 @@ public class ManagerScript : MonoBehaviour
 
     void SpawnEnemies()
     {
-
-        print(player.transform.position.x);
-
         var deltaX = 0f;
         var deltaY = 0f;
 
@@ -61,7 +58,6 @@ public class ManagerScript : MonoBehaviour
             //Code to make enemy spawn off screen;
 
             deltaX = randomX - player.transform.position.x;
-            print("delta x is: " + deltaX);
             if (deltaX < 0)
             {
                 deltaX = deltaX * -1;
@@ -96,7 +92,6 @@ public class ManagerScript : MonoBehaviour
             //Code to make enemy spawn off screen;
 
             deltaX = randomX - player.transform.position.x;
-            print("delta x is: " + deltaX);
             if (deltaX < 0)
             {
                 deltaX = deltaX * -1;
@@ -111,5 +106,6 @@ public class ManagerScript : MonoBehaviour
 
         var npcPosition = new Vector3(randomX, randomY, -1);
         GameObject npc = Instantiate(npcPrefab, npcPosition, Quaternion.identity);
+        npc.gameObject.tag = "NPC";
     }
 }

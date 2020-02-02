@@ -10,7 +10,13 @@ public class PlayerController : MonoBehaviour
 
     public float healthValue;
 
+    public Transform repair;
+
+    public float repairValue;
+
     public GameObject bulletPrefab;
+
+    public GameObject rocketShip;
 
     public ManagerScript gameManager;
 
@@ -19,6 +25,12 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
 
     public float moveSpeed;
+
+    public bool carryingNPC;
+
+    public bool savedNPC;
+
+    public bool shouldLaunch;
 
     private Vector2 moveVector;
 
@@ -35,7 +47,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        carryingNPC = false;
+        savedNPC = false;
     }
 
     // Update is called once per frame
@@ -43,6 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleInput();
         HandleFire();
+        LowerRepairBarOverTime();
     }
 
     private void FixedUpdate()
@@ -154,6 +168,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void LowerRepairBarOverTime()
+    {
+        var dwindleSpeed = 0.2f;
+        if(repairValue > 0f)
+        {
+            repairValue = repairValue - dwindleSpeed;
+
+        }
+        var repairBarValue = repairValue / 100f;
+
+        GameObject repairBar = GameObject.FindGameObjectWithTag("RepairBar");
+        repairBar.transform.localScale = new Vector3(repairBarValue, 1f);
+    }
+
     void HandleMovement()
     {
         rb.velocity = moveVector * moveSpeed * Time.fixedDeltaTime;
@@ -161,10 +189,38 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Ship" && carryingNPC == true)
+        {
+            print("Touching rocket");
+            var repairSpeed = 0.7f;
+            repairValue = repairValue + repairSpeed;
+            var repairBarValue = repairValue / 100f;
+
+            if (repairBarValue >= 1f)
+            {
+                repairValue = 0f;
+                repairBarValue = 0f;
+                print("TAKE OFF");
+
+                shouldLaunch = true;
+
+                carryingNPC = false;
+                savedNPC = true;
+            }
+
+            GameObject repairBar = GameObject.FindGameObjectWithTag("RepairBar");
+            repairBar.transform.localScale = new Vector3(repairBarValue, 1f);
+
+            if(shouldLaunch == true)
+            {
+                rocketShip.transform.GetComponent<RocketScript>().launchRocket = true;
+                shouldLaunch = false;
+            }
+        }
+
 
         if (collision.gameObject.tag == "Enemy")
         {
-            print("collide");
             var damage = 2f;
             healthValue = healthValue - damage;
             var healthBarValue = healthValue / 100f;
@@ -177,6 +233,28 @@ public class PlayerController : MonoBehaviour
 
             GameObject bar = GameObject.FindGameObjectWithTag("PlayerHealth");
             bar.transform.localScale = new Vector3(healthBarValue, 1f);
+        }
+
+        if (collision.gameObject.tag == "NPC")
+        {
+            print("Touching NPC");
+            if (savedNPC == true)
+            {
+                savedNPC = false;
+                Destroy(collision.gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag == "NPC")
+        {
+            print("FOUND ASTRONAUT");
+            collision.gameObject.transform.GetComponent<NPCscript>().follow = true;
+            carryingNPC = true;
+
         }
     }
 }

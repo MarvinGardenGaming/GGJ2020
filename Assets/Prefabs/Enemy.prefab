@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 337093278864004604}
   EnemyHealth: 21
-  moveSpeed: 2
+  moveSpeed: 2.1
 --- !u!70 &337093278864004601
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - PlayerHealth
   - Bullet
+  - NPC
+  - Ship
+  - RepairBar
+  - Score
   layers:
   - Default
   - TransparentFX
